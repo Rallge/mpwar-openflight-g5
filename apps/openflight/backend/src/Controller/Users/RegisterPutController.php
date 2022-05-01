@@ -19,12 +19,22 @@ final class RegisterPutController
     public function __invoke(string $id, Request $request): JsonResponse
     {
         try {
+
+
+            $data = $request->toArray();
+           /*Para verificar
+            dd(                $id,
+               $data['username'],
+                $data['name'],
+                $data['last_name'],
+                $data['password']);*/
+
             $this->userRegistration->__invoke(
                 $id,
-                $request->request->getAlpha('username'),
-                $request->request->getAlpha('name'),
-                $request->request->getAlpha('last_name'),
-                $request->request->get('password')
+                $data['username'],
+                $data['name'],
+                $data['last_name'],
+                $data['password']
             );
             return new JsonResponse("OK", Response::HTTP_CREATED);
         } catch (DomainError $e) {

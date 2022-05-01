@@ -6,6 +6,7 @@ namespace CodelyTv\OpenFlight\Users\Domain;
 
 use CodelyTv\Shared\Domain\Aggregate\AggregateRoot;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
+use function PHPUnit\Framework\throwException;
 
 class User extends AggregateRoot
 {
@@ -82,6 +83,15 @@ class User extends AggregateRoot
     {
         if (!preg_match(self::pattern, $password)) {
             throw new InvalidPassword($password);
+        }
+    }
+
+    //Loguear usuario
+
+    public function loginUserValidate(string $password): void
+    {
+       if($this->password != $password){
+           throw new InvalidPasswordLogin();
         }
     }
 }

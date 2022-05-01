@@ -1,0 +1,4 @@
+login-user_post:
+  path: /login-user/
+  controller: CodelyTv\Apps\OpenFlight\Backend\Controller\Users\LoginPostController
+  methods: [ POST ]
