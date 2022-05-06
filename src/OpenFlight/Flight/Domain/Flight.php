@@ -11,6 +11,8 @@ class Flight
     private string $destination;
     private int $flightHours;
     private float $price;
+    private static array $currencies=[
+        '$', '£', '€'];
     private string $currency;
     private string $departureDate;
     private string $aircraft;
@@ -143,6 +145,12 @@ class Flight
     public static function validateflightHours(int $InflightHours){
         if($InflightHours<1){
             throw new InvalidFlightHours($InflightHours);
+        }
+    }
+
+    public static function validateCurrency(string $InCurrency){
+        if(!in_array($InCurrency,selft::currencies)){
+            throw new InvalidCurrency($InCurrency);
         }
     }
 
