@@ -16,6 +16,29 @@ class Flight
     private string $aircraft;
     private string $airline;
 
+    private static array $airports = [
+        'BCN',
+        'LAX',
+        'DME',
+        'DXB',
+        'GRU',
+        'GYE',
+        'HND' .
+        'HKG',
+        'JFK',
+        'LAS',
+        'LIM',
+        'MIA',
+        'MUC',
+        'MXP',
+        'SCL',
+        'TLS',
+        'VVI',
+        'YOW',
+        'MAD',
+        'LIS'
+    ];
+
     public function __construct(Uuid $id, string $origin, string $destination, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline)
     {
         $this->id = $id;
@@ -101,7 +124,12 @@ class Flight
         return $this->airline;
     }
 
+    public static function validateAirport(string $InAirport)
+    {
 
-
+        if (!in_array($InAirport, self::$airports)) {
+            throw new NotExistAirport($InAirport);
+        }
+    }
 
 }
