@@ -7,7 +7,7 @@ use CodelyTv\Shared\Domain\DomainError;
 class InvalidCurrency extends DomainError
 {
 
-    public function __construct()
+    public function __construct(private string $InCurrency)
     {
         parent::__construct();
     }

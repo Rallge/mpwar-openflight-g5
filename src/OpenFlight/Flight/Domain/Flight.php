@@ -154,4 +154,12 @@ class Flight
         }
     }
 
+    public static function validateDepartureDate(string $InDepartureDate){
+        $currentDate = strtotime(date("Y-m-d H:i:s",time()));
+        $intDate = strtotime($InDepartureDate);
+        if($currentDate > $intDate){
+            throw new InvalidDepartureDate($InDepartureDate);
+        }
+    }
+
 }
