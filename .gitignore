@@ -10,3 +10,9 @@
 .phpunit.result.cache
 
 /build
+
+.idea
+
+.DS_Store
+
+
