@@ -162,4 +162,16 @@ class Flight
         }
     }
 
+    public static function registerFlight(Uuid $id, string $origin, string $destination, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline) {
+
+        self::validateAirport($origin);
+        self::validateAirport($destination);
+        self::validateAirportOriginWithAirportDestination($origin,$destination);
+        self::validateflightHours($flightHours);
+        self::validateCurrency($currency);
+        self::validateDepartureDate($departureDate);
+        return  new self($id, $origin, $destination,  $flightHours,  $price,  $currency, $departureDate,  $aircraft, $airline);
+
+    }
+
 }
