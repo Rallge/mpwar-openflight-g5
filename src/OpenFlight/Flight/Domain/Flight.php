@@ -132,4 +132,12 @@ class Flight
         }
     }
 
+    public static function validateAirportOriginWithAirportDestination(string $InAirportOrigin, string $InAirportDestination)
+    {
+
+        if ($InAirportOrigin === $InAirportDestination) {
+            throw new AirportsOriginAndDestinationAreEquals($InAirportOrigin,$InAirportDestination);
+        }
+    }
+
 }

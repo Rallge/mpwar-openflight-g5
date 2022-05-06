@@ -14,7 +14,7 @@
 4. Then you'll have:
    1. [health-check](apps/openflight/backend/src/Controller/Healthcheck): http://localhost:8030/health-check
    2. PUT [register-user](apps/openflight/backend/src/Controller/Users): http://localhost:8030/register-user/e617f839-c8ee-4580-a0d3-6dceab0f3293 + body
-   
+
 
 ### Add a new endpoint
 
@@ -26,7 +26,7 @@
 1. Deben clonar este proyecto y luego subirlo a un repositorio privado de cada grupo
 2. El nombre del proyecto mpwar-openflight-g{nro}
 3. Deben dar acceso al usuario lucianogarciaz
-4. Para entregar el práctico debe ser un pull request contra la rama `master` con fecha máxima 28-04-2021x 
+4. Para entregar el práctico debe ser un pull request contra la rama `master` con fecha máxima 28-04-2021x
 
 ### Enunciado
 
@@ -41,10 +41,37 @@ El mismo será una petición http `POST` al endpoint `/login` y el body será de
 ```
 
 #### Negocio nos pide
-* Si el usuario no puede loguearse (por que su password es incorrecto, o no existe en la base de datos) deberá devolver 
-"Incorrect credentials".
+* Si el usuario no puede loguearse (por que su password es incorrecto, o no existe en la base de datos) deberá devolver
+  "Incorrect credentials".
 
 ### Mínimos requisitos para aprobar
 * Cumplir con la regla de dependencias
 
 #### NOTA: Agregar todos los métodos, clases o interfaces que crea que haga falta.
+
+## Enunciado Practico NRO 2
+
+Ya tenemos los usuarios creados y se pueden loguear en nuestro sistema
+Ahora queremos poder crear un vuelo
+El vuelo tiene que tener una localidad de origen y otra final
+El mismo será una petición http `POST` al endpoint `/create-flight` y el body será de la siguiente manera
+```json
+{
+   "id": "00e71601-d7ad-492f-b703-4160e622c55e",
+   "origin": "BCN",
+   "destination": "LAX",
+   "flight-hours": "2",
+   "price": "234",
+   "currency":"€",
+   "departure-date": "2020-02-20 14:00",
+   "aircraft": "Boeing 757",
+   "airline": "Air France"
+}
+```
+Restricciones:
+* El aeropuerto debe ser válido
+* El aeropuerto de partida debe ser distinto al de llegada
+* Las horas de vuelo deben ser mayores a 1.
+* Las currencies que aceptamos son dolares, libras y euros ($, £, €)
+* La fecha de partida debe ser mayor a la fecha actual
+* El vuelo debe ser creado con éxito (response status: 200)
