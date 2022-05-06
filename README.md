@@ -75,3 +75,7 @@ Restricciones:
 * Las currencies que aceptamos son dolares, libras y euros ($, £, €)
 * La fecha de partida debe ser mayor a la fecha actual
 * El vuelo debe ser creado con éxito (response status: 200)
+
+Resultado final - Práctica 2
+
+![Screenshot](screenshot.jpeg)
