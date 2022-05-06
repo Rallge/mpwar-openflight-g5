@@ -149,7 +149,7 @@ class Flight
     }
 
     public static function validateCurrency(string $InCurrency){
-        if(!in_array($InCurrency,selft::currencies)){
+        if(!in_array($InCurrency,self::$currencies)){
             throw new InvalidCurrency($InCurrency);
         }
     }

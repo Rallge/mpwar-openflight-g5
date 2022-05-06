@@ -19,7 +19,7 @@ class RegisterFlightPostController
         try {
 
             $data = $request->toArray();
-            $this->flightRegistration($id, $data["origin"], $data["destination"], $data["flightHours"], $data["price"], $data["currency"], $data["departureDate"], $data["aircraft"], $data["airline"]);
+            $this->flightRegistration->__invoke($id, $data["origin"], $data["destination"], $data["flight-hours"], $data["price"], $data["currency"], $data["departure-date"], $data["aircraft"], $data["airline"]);
 
             return new JsonResponse("OK", Response::HTTP_CREATED);
 
