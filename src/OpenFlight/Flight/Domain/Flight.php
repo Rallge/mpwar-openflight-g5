@@ -140,4 +140,10 @@ class Flight
         }
     }
 
+    public static function validateflightHours(int $InflightHours){
+        if($InflightHours<1){
+            throw new InvalidFlightHours($InflightHours);
+        }
+    }
+
 }
