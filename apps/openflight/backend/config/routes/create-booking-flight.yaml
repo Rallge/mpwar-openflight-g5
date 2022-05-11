@@ -1,0 +1,4 @@
+create_booking_flight_post:
+  path: /create-booking-flight/{id}
+  controller: CodelyTv\Apps\OpenFlight\Backend\Controller\BookingFlight\RegisterBookingFlightPostController
+  methods: [ POST ]
