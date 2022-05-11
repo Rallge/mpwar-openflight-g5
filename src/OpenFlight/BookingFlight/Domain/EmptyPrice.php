@@ -7,7 +7,7 @@ use CodelyTv\Shared\Domain\DomainError;
 class EmptyPrice extends DomainError
 {
 
-    public function __construct(private string $price)
+    public function __construct(private int $price)
     {
         parent::__construct();
     }

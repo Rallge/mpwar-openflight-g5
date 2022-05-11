@@ -11,15 +11,15 @@ class BookingFlight
     private Uuid $idFlight;
     private Uuid $idUser;
     private string $seat;
-    private float $price;
+    private int $price;
     private string $reservationDate;
     private ClassFlight $classFlight;
 
-    public function __construct(Uuid $id, Uuid $idFlight, Uuid $idUser, string $seat, float $price, ClassFlight $classFlight)
+    public function __construct(Uuid $id, Uuid $idUser,Uuid $idFlight , string $seat, int $price, ClassFlight $classFlight)
     {
         $this->id = $id;
-        $this->idFlight = $idFlight;
         $this->idUser = $idUser;
+        $this->idFlight = $idFlight;
         self::validateEmptySeat($seat);
         $this->seat = $seat;
         self::validateEmptyPrice($price);
@@ -39,17 +39,17 @@ class BookingFlight
     /**
      * @return Uuid
      */
-    public function idFlight(): Uuid
+    public function idUser(): Uuid
     {
-        return $this->idFlight;
+        return $this->idUser;
     }
 
     /**
      * @return Uuid
      */
-    public function idUser(): Uuid
+    public function idFlight(): Uuid
     {
-        return $this->idUser;
+        return $this->idFlight;
     }
 
     /**
@@ -61,9 +61,9 @@ class BookingFlight
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function price(): float
+    public function price(): int
     {
         return $this->price;
     }
@@ -84,10 +84,10 @@ class BookingFlight
         return $this->classFlight;
     }
 
-    public static function validateEmptyPrice(string $price)
+    public static function validateEmptyPrice(int $price)
     {
 
-        if ($price == "") {
+        if ($price == 0) {
             throw new EmptyPrice();
         }
     }
@@ -99,7 +99,7 @@ class BookingFlight
         }
     }
 
-    public static function RegisterBookingFlight(Uuid $id, Uuid $idFlight, Uuid $idUser, string $seat, float $price, ClassFlight $classFlight):BookingFlight{
-        return new self($id,$idFlight,$idUser,$seat,$price,$classFlight);
+    public static function RegisterBookingFlight(Uuid $id, Uuid $idUser, Uuid $idFlight, string $seat, float $price, ClassFlight $classFlight):BookingFlight{
+        return new self($id,$idUser, $idFlight,$seat,$price,$classFlight);
     }
 }

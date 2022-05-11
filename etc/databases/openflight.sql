@@ -38,9 +38,9 @@ CREATE TABLE `booking_flight`
     `ReservationDate` DATETIME     NOT NULL,
     `Seat`           CHAR(5)      NOT NULL,
     `Class`          VARCHAR(50)  NOT NULL,
-    `UserId`         CHAR(36)     NOT NULL,
-    `FlightId`       CHAR(36)     NOT NULL,
+    `IdUser`         CHAR(36)     NOT NULL,
+    `IdFlight`       CHAR(36)     NOT NULL,
     PRIMARY KEY (`Id`),
-    FOREIGN KEY (`UserId`) REFERENCES user(`Id`),
-    FOREIGN KEY (`FlightId`) REFERENCES flight(`Id`)
+    FOREIGN KEY (`IdUser`) REFERENCES user(`Id`),
+    FOREIGN KEY (`IdFlight`) REFERENCES flight(`Id`)
 ) ENGINE = InnoDB;

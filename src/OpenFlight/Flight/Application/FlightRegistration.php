@@ -14,7 +14,7 @@ class FlightRegistration
 
     }
 
-    public function __invoke(string $id, string $origin, string $destination, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline)
+    public function __invoke(string $id, string $origin, string $destination, int $flightHours, int $price, string $currency, string $departureDate, string $aircraft, string $airline)
     {
         $uuid = new Uuid($id);
         $flight = Flight::registerFlight( $uuid, $origin, $destination,  $flightHours,  $price,  $currency, $departureDate,  $aircraft, $airline);

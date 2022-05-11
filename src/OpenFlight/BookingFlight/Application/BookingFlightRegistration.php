@@ -15,14 +15,14 @@ class BookingFlightRegistration
 
     }
 
-    public function __invoke(string $id, string $idFlight, string $idUser, string $seat, float $price, string $classFlight)
+    public function __invoke(string $id,  string $idUser, string $idFlight, string $seat, int $price, string $classFlight)
     {
         $uuid = new Uuid($id);
-        $uuidFlight = new Uuid($idFlight);
         $uuidUser = new Uuid($idUser);
+        $uuidFlight = new Uuid($idFlight);
         $classFlight = new ClassFlight($classFlight);
 
-        $bookingFlight = BookingFlight::RegisterBookingFlight($uuid,$uuidFlight,$uuidUser,$seat,$price,$classFlight);
+        $bookingFlight = BookingFlight::RegisterBookingFlight($uuid,$uuidUser,$uuidFlight,$price,$seat,$classFlight);
         $this->repository->Save($bookingFlight);
 
     }
