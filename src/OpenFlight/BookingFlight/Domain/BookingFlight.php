@@ -99,4 +99,7 @@ class BookingFlight
         }
     }
 
+    public static function RegisterBookingFlight(Uuid $id, Uuid $idFlight, Uuid $idUser, string $seat, float $price, ClassFlight $classFlight):BookingFlight{
+        return new self($id,$idFlight,$idUser,$seat,$price,$classFlight);
+    }
 }
