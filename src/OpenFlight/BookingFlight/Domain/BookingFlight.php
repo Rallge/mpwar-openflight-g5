@@ -31,7 +31,7 @@ class BookingFlight
     /**
      * @return Uuid
      */
-    public function getId(): Uuid
+    public function id(): Uuid
     {
         return $this->id;
     }
@@ -39,7 +39,7 @@ class BookingFlight
     /**
      * @return Uuid
      */
-    public function getIdFlight(): Uuid
+    public function idFlight(): Uuid
     {
         return $this->idFlight;
     }
@@ -47,7 +47,7 @@ class BookingFlight
     /**
      * @return Uuid
      */
-    public function getIdUser(): Uuid
+    public function idUser(): Uuid
     {
         return $this->idUser;
     }
@@ -55,7 +55,7 @@ class BookingFlight
     /**
      * @return string
      */
-    public function getSeat(): string
+    public function seat(): string
     {
         return $this->seat;
     }
@@ -63,7 +63,7 @@ class BookingFlight
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function price(): float
     {
         return $this->price;
     }
@@ -71,7 +71,7 @@ class BookingFlight
     /**
      * @return string
      */
-    public function getReservationDate(): string
+    public function reservationDate(): string
     {
         return $this->reservationDate;
     }
@@ -79,7 +79,7 @@ class BookingFlight
     /**
      * @return ClassFlight
      */
-    public function getClassFlight(): ClassFlight
+    public function classFlight(): ClassFlight
     {
         return $this->classFlight;
     }

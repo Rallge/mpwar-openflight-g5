@@ -29,3 +29,18 @@ CREATE TABLE `flight`
     `Airline`       VARCHAR(50)  NOT NULL,
     PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB;
+
+DROP TABLE IF EXISTS `booking_flight`;
+CREATE TABLE `booking_flight`
+(
+    `Id`             CHAR(36)     NOT NULL,
+    `Price`          INT          NOT NULL,
+    `ReservationDate` DATETIME     NOT NULL,
+    `Seat`           CHAR(5)      NOT NULL,
+    `Class`          VARCHAR(50)  NOT NULL,
+    `UserId`         CHAR(36)     NOT NULL,
+    `FlightId`       CHAR(36)     NOT NULL,
+    PRIMARY KEY (`Id`),
+    FOREIGN KEY (`UserId`) REFERENCES user(`Id`),
+    FOREIGN KEY (`FlightId`) REFERENCES flight(`Id`)
+) ENGINE = InnoDB;
