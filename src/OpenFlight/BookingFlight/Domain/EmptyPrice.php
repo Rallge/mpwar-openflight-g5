@@ -4,22 +4,21 @@ namespace CodelyTv\OpenFlight\BookingFlight\Domain;
 
 use CodelyTv\Shared\Domain\DomainError;
 
-class InvalidClassFlight extends DomainError
+class EmptyPrice extends DomainError
 {
 
-
-    public function __construct(private string $inClassFlight)
+    public function __construct(private string $price)
     {
         parent::__construct();
     }
 
     public function errorCode(): string
     {
-        return 'invalid_ClassFlight';
+        return 'invalid_price';
     }
 
     protected function errorMessage(): string
     {
-        return sprintf('The Class Flight is invalid', $this->inClassFlight);
+        return sprintf('The Price <%s> provided is empty', $this->price);
     }
 }

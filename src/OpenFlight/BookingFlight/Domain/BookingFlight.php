@@ -7,7 +7,6 @@ use CodelyTv\Shared\Domain\ValueObject\Uuid;
 
 class BookingFlight
 {
-
     private Uuid $id; //Cod. Reserva
     private Uuid $idFlight;
     private Uuid $idUser;
@@ -16,23 +15,16 @@ class BookingFlight
     private string $reservationDate;
     private ClassFlight $classFlight;
 
-    /**
-     * @param Uuid $id
-     * @param Uuid $idFlight
-     * @param Uuid $idUser
-     * @param string $seat
-     * @param float $price
-     * @param string $reservationDate
-     * @param ClassFlight $classFlight
-     */
-    public function __construct(Uuid $id, Uuid $idFlight, Uuid $idUser, string $seat, float $price, string $reservationDate, ClassFlight $classFlight)
+    public function __construct(Uuid $id, Uuid $idFlight, Uuid $idUser, string $seat, float $price, ClassFlight $classFlight)
     {
         $this->id = $id;
         $this->idFlight = $idFlight;
         $this->idUser = $idUser;
+        self::validateEmptySeat($seat);
         $this->seat = $seat;
+        self::validateEmptyPrice($price);
         $this->price = $price;
-        $this->reservationDate = $reservationDate;
+        $this->reservationDate = (new \DateTimeImmutable())->format('Y-m-d H:i:s');
         $this->classFlight = $classFlight;
     }
 
@@ -92,6 +84,19 @@ class BookingFlight
         return $this->classFlight;
     }
 
+    public static function validateEmptyPrice(string $price)
+    {
 
+        if ($price == "") {
+            throw new EmptyPrice();
+        }
+    }
+
+    public static function validateEmptySeat(string $seat)
+    {
+        if ($seat == "") {
+            throw new EmptySeat();
+        }
+    }
 
 }
