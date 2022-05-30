@@ -19,8 +19,8 @@ class MysqlFlightRepository implements FlightRepository
         $sql = 'INSERT INTO flight VALUES (:id, :origin, :destination, :flight_hours, :price, :currency, :departure_date, :aircraft, :airline)';
         $statement = $this->mysql->PDO()->prepare($sql);
         $statement->bindValue(':id', $flight->ID()->value());
-        $statement->bindValue(':origin', $flight->origin());
-        $statement->bindValue(':destination', $flight->destination());
+        $statement->bindValue(':origin', $flight->journey()->origin());
+        $statement->bindValue(':destination', $flight->journey()->destination());
         $statement->bindValue(':flight_hours', $flight->flightHours());
         $statement->bindValue(':price', $flight->price());
         $statement->bindValue(':currency', $flight->currency());

@@ -2,13 +2,13 @@
 
 namespace CodelyTv\OpenFlight\Flight\Domain;
 
+use CodelyTv\OpenFlight\Flight\Domain\valueObject\Journey;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
 
 class Flight
 {
     private Uuid $id;
-    private string $origin;
-    private string $destination;
+    private Journey $journey;
     private int $flightHours;
     private float $price;
     private static array $currencies=[
@@ -18,34 +18,10 @@ class Flight
     private string $aircraft;
     private string $airline;
 
-    private static array $airports = [
-        'BCN',
-        'LAX',
-        'DME',
-        'DXB',
-        'GRU',
-        'GYE',
-        'HND' .
-        'HKG',
-        'JFK',
-        'LAS',
-        'LIM',
-        'MIA',
-        'MUC',
-        'MXP',
-        'SCL',
-        'TLS',
-        'VVI',
-        'YOW',
-        'MAD',
-        'LIS'
-    ];
-
-    public function __construct(Uuid $id, string $origin, string $destination, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline)
+    public function __construct(Uuid $id, Journey $journey, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline)
     {
         $this->id = $id;
-        $this->origin = $origin;
-        $this->destination = $destination;
+        $this->journey = $journey;
         $this->flightHours = $flightHours;
         $this->price = $price;
         $this->currency = $currency;
@@ -55,27 +31,19 @@ class Flight
     }
 
     /**
+     * @return Journey
+     */
+    public function journey(): Journey
+    {
+        return $this->journey;
+    }
+
+    /**
      * @return Uuid
      */
     public function id(): Uuid
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function origin(): string
-    {
-        return $this->origin;
-    }
-
-    /**
-     * @return string
-     */
-    public function destination(): string
-    {
-        return $this->destination;
     }
 
     /**
@@ -126,22 +94,6 @@ class Flight
         return $this->airline;
     }
 
-    public static function validateAirport(string $InAirport)
-    {
-
-        if (!in_array($InAirport, self::$airports)) {
-            throw new NotExistAirport($InAirport);
-        }
-    }
-
-    public static function validateAirportOriginWithAirportDestination(string $InAirportOrigin, string $InAirportDestination)
-    {
-
-        if ($InAirportOrigin === $InAirportDestination) {
-            throw new AirportsOriginAndDestinationAreEquals($InAirportOrigin,$InAirportDestination);
-        }
-    }
-
     public static function validateflightHours(int $InflightHours){
         if($InflightHours<1){
             throw new InvalidFlightHours($InflightHours);
@@ -162,15 +114,12 @@ class Flight
         }
     }
 
-    public static function registerFlight(Uuid $id, string $origin, string $destination, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline) {
+    public static function registerFlight(Uuid $id, Journey $journey, int $flightHours, float $price, string $currency, string $departureDate, string $aircraft, string $airline) {
 
-        self::validateAirport($origin);
-        self::validateAirport($destination);
-        self::validateAirportOriginWithAirportDestination($origin,$destination);
         self::validateflightHours($flightHours);
         self::validateCurrency($currency);
         self::validateDepartureDate($departureDate);
-        return  new self($id, $origin, $destination,  $flightHours,  $price,  $currency, $departureDate,  $aircraft, $airline);
+        return  new self($id,$journey,$flightHours,  $price,  $currency, $departureDate,  $aircraft, $airline);
 
     }
 
