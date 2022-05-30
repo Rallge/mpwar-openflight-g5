@@ -90,6 +90,7 @@ Aquí tener en cuenta:
 * Precio
 * ...?
 
+![Practica3](Practica3.png)
 
 El práctico 3 tiene dos partes.
 * La primera parte consiste en diseñar el agregado y debatirlo con el docente.
