@@ -15,7 +15,7 @@ class MysqlBookingFlightRepository implements BookingFlightRepository
 
     public function save(BookingFlight $bookingFlight): void
     {
-        $sql = 'INSERT INTO booking_flight VALUES (:id, :idUser, :idFlight, :price, :reservationDate, :seat, :class)';
+        $sql = 'INSERT INTO booking_flight VALUES (:id,:price,:reservationDate, :seat,:class, :idUser,:idFlight)';
         $statement = $this->mysql->PDO()->prepare($sql);
         $statement->bindValue(':id', $bookingFlight->ID()->value());
         $statement->bindValue(':idUser', $bookingFlight->idUser()->value());
