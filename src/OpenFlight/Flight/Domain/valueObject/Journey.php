@@ -2,6 +2,9 @@
 
 namespace CodelyTv\OpenFlight\Flight\Domain\valueObject;
 
+use CodelyTv\OpenFlight\Flight\Domain\AirportsOriginAndDestinationAreEquals;
+use CodelyTv\OpenFlight\Flight\Domain\NotExistAirport;
+
 class Journey
 {
     private string $origin;
@@ -39,6 +42,22 @@ class Journey
         $this->destination = $destination;
     }
 
+    public static function validateAirport(string $InAirport): void
+    {
+
+        if (!in_array($InAirport, self::$airports)) {
+            throw new NotExistAirport($InAirport);
+        }
+    }
+
+    public static function validateAirportOriginWithAirportDestination(string $InAirportOrigin, string $InAirportDestination):void
+    {
+
+        if ($InAirportOrigin === $InAirportDestination) {
+            throw new AirportsOriginAndDestinationAreEquals($InAirportOrigin,$InAirportDestination);
+        }
+    }
+
     public function origin(): string
     {
         return $this->origin;
@@ -47,21 +66,5 @@ class Journey
     public function destination(): string
     {
         return $this->destination;
-    }
-
-    public static function validateAirport(string $InAirport)
-    {
-
-        if (!in_array($InAirport, self::$airports)) {
-            throw new NotExistAirport($InAirport);
-        }
-    }
-
-    public static function validateAirportOriginWithAirportDestination(string $InAirportOrigin, string $InAirportDestination)
-    {
-
-        if ($InAirportOrigin === $InAirportDestination) {
-            throw new AirportsOriginAndDestinationAreEquals($InAirportOrigin,$InAirportDestination);
-        }
     }
 }
